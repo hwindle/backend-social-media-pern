@@ -36,8 +36,8 @@ const addTopFollower = (req, res) => {
   // validate these items
   const type = req.body.type;
   const handle = req.body.handle;
-  const followers = parseInt(req.body.followers);
-  const trend = parseInt(req.body.trend);
+  const followers = parseInt(req.body.followers) || 0;
+  const trend = parseInt(req.body.trend) || 0;
   let INSERT = 'INSERT INTO topfollowers (type, handle, followers, trend) VALUES ($1, $2, $3, $4)';
   let safeValues = [type, handle, followers, trend];
   dbClient.query(INSERT, safeValues).then(dbResult => {
@@ -78,9 +78,9 @@ const deleteTopFollowerById = (req, res) => {
 const addOverview = (req, res) => {
   // validate these items
   const type = req.body.type;
-  const title = req.body.handle;
+  const title = req.body.title;
   const number = parseInt(req.body.followers);
-  const percentage = parseInt(req.body.trend);
+  const percentage = parseInt(req.body.percentage);
   let INSERT = 'INSERT INTO overview (type, title, number, percentage) VALUES ($1, $2, $3, $4)';
   let safeValues = [type, title, number, percentage];
   dbClient.query(INSERT, safeValues).then(dbResult => {
